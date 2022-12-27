@@ -1,80 +1,66 @@
 const students = ['Олександр', 'Ігор', 'Олена', 'Іра', 'Олексій', 'Світлана'];
-const themes = ['Диференційне рівня', 'Теорія автоманів', 'Алгоритми і структури даних'];
+const themes = ['Диференційне рівня', 'Теорія автоматів', 'Алгоритми і структури даних'];
 const marks = [4, 5, 5, 3, 4, 5];
+const girls = students.filter((el) => el.slice(-1) === "а");
+const boys = students.filter((el) => el.slice(-1) !== "а");
 
-function getBoys (arr) {
-    const boys = [];
-    for (let i=0; i<students.length; i++){
-        if (arr [i] === 'Олександр' || arr [i] === 'Ігор' || arr [i] === 'Олексій' ){
-            boys.push(arr[i]);
-        }
+
+const getPairs = (girls, boys) => {
+    let pair = [];
+    for (let i=0; i<girls.length; i++) {
+     pair = [...pair, [girls[i], boys[i]]]
     }
-    return boys;
-}
+    return pair
+};
+const pair = getPairs(girls, boys)
+console.log("Pair", pair);
 
-function getGirls(arr) {
-	const girls = [];
-	for (let i = 0; i < students.length; i++){
-		if (arr[i] === 'Олена' || arr[i] === 'Іра' || arr[i] === 'Світлана'){
-			girls.push(arr[i]);
-		} 
-	}
-	return girls;
-}
-function getPairs(boys, girls) {
-    let eachPair = '';
-    const pairs = [];
-    for (let i=0; i<students.length / 2; i++) {
-        eachPair = boys.slice (i, i+1);
-        eachPair.push(girls[i]);
-        eachPair = eachPair.join ('i');
+const getPairAndThemes = (girls, boys, themes) => {
+    let pairAndThemesArray = [];
+    for (let i = 0; i < girls.length; i++) {
+      pairAndThemesArray = [...pairAndThemesArray, [`${girls[i]} i ${boys[i]}`, themes[i]],];
     }
-    return pairs
-}
+    return pairAndThemesArray;
+  };
+  const pairAndThemesArray = getPairAndThemes(girls,boys,themes);
+  console.log("Pair and Themes", pairAndThemesArray);
 
-function getPairsThemes (pairs, themesCopy){
-    const studentsPlusTheme = [];
-    let studentGenderArray = [...pairs];
-    let studentGenderString = [];
-    for (let i=0; i < studentGenderArray.length; i++){
-    const studentsEach = studentGenderArray.slice([i], [i+1]);
-    studentGenderString.push (studentsEach.pop (studentsEach.length - 1));
-studentGenderString.push(themesCopy[i]);
-studentsPlusTheme.push(studentGenderString);
-studentGenderString = [];
+  const getMarks = (students, marks) => {
+    let studentsMarks = [];
+    for (let i = 0; i < students.length; i++) {
+      studentsMarks = [...studentsMarks, [students[i], marks[i]]];
     }
-return studentsPlusTheme;    
-}
+    return studentsMarks;
+  };
+  const studentsMarks = getMarks(students, marks);
+  console.log("Students and marks", studentsMarks);
 
-getPairsThemes(getPairs(getBoys(students), getGirls(students)), themes);
+  const getPairsThemeAndMarks = (pairAndThemesArray) => {
+    const studentsThemesAndMarks = pairAndThemesArray.map((el) => [...el,Math.floor(Math.random() * 5 + 1),]);
+    return studentsThemesAndMarks;
+  };
+  const studentsThemesAndMarks = getPairsThemeAndMarks(pairAndThemesArray);
+  console.log("Pairs and Themes and Marks", studentsThemesAndMarks);
 
-function giveStudentMark (students, marks) {
-    const studentsMark = [];
-    for (let i= 0; i < students.length; i++) {
-    let eachStudent = students.slice (i, i+1);
-    eachStudent.push (marks[i]);
-    studentsMark.push (eachStudent);
-    }
-    return  studentsMark;
-}
-
-function getPairsThemeAndMarks (studentsTheme, marks) {
-const studentsFinalResult = [];
-let studentsPlusThemeCopy = [...studentsTheme];
-let eachStudentThemeArray = [];
-for (let i=0; i <= studentsPlusThemeCopy.length - 1; i++) {
-    const randomMark = Math.floor (Math.random() * (5 - 1 + 1)) + 1;
-    let eachStudentTheme = studentsPlusThemeCopy.slice([i], [i+1]);
-    eachStudentThemeArray = eachStudentTheme.pop(eachStudentTheme.length - 1);
-    eachStudentThemeArray.push(randomMark);
-    studentsFinalResult.push(eachStudentThemeArray);
-}   
-return studentsFinalResult;
-}
-
-const container=document.querySelector("#container");
-container.innerHTML=`
-<p>Pairs: ${getPairs(getBoys(students) , getGirls(students))};</p>
-<p>Student/Mark: ${giveStudentMark(students, marks)};</p>
-<p>Final result: ${getPairsThemeAndMarks(getPairsThemes(getPairs(getBoys(students) , getGirls(students)) , themes) , marks)};</p>
-`;
+document.write("Kоманди: ","</br>");
+document.write("Команда 1: ", pair[0] , ";", "</br>");
+document.write("Команда 2: ", pair[1] , ";", "</br>");
+document.write("Команда 3: ", pair[2] , ".", "</br>");
+document.writeln("</br>");
+document.write("Kоманда  з темами: ",  "</br>");
+document.write("Команда 1: ", pairAndThemesArray[0] , ";", "</br>");
+document.write("Команда 2: ", pairAndThemesArray[1] , ";", "</br>");
+document.write("Команда 3: ", pairAndThemesArray[2] , ".", "</br>");
+document.writeln("</br>");
+document.writeln("Студент + оцінка: ",  "</br>");
+document.write("Студент: ", studentsMarks[0] , ";", "</br>");
+document.write("Студент: ", studentsMarks[1] , ";", "</br>");
+document.write("Студент: ", studentsMarks[2] , ";", "</br>");
+document.write("Студент: ", studentsMarks[3] , ";", "</br>");
+document.write("Студент: ", studentsMarks[4] , ";", "</br>");
+document.write("Студент: ", studentsMarks[5] , ".", "</br>");
+document.writeln("</br>");
+document.write("Команда + оцінка: ", "</br>");
+document.write("Команда 1: ", studentsThemesAndMarks[0] , ";", "</br>");
+document.write("Команда 2: ", studentsThemesAndMarks[1] , ";", "</br>");
+document.write("Команда 3: ", studentsThemesAndMarks[2] , ".", "</br>");
