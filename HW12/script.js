@@ -1,4 +1,4 @@
-const BASE = "https://swapi.co/api/";
+const BASE = "https://swapi.dev/api/";
 const CHARACTERS = document.querySelector(".characters");
 const PLANETS = document.querySelector(".planets");
 
