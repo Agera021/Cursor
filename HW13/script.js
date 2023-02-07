@@ -23,14 +23,14 @@ function* createIdGenerator() {
 const fontGenerator = newFontGenerator(14);
 
 console.log('Завдання 2');
-console.log(fontGenerator.next("up").value);   //-> 14
-console.log(fontGenerator.next("up").value);   //-> 16
-console.log(fontGenerator.next("up").value);   //-> 18
-console.log(fontGenerator.next().value);       //-> 18
-console.log(fontGenerator.next("down").value); //-> 16
-console.log(fontGenerator.next("down").value); //-> 14
-console.log(fontGenerator.next("down").value); //-> 12
-console.log(fontGenerator.next().value);       //-> 12
+console.log(fontGenerator.next("up").value);   
+console.log(fontGenerator.next("up").value);   
+console.log(fontGenerator.next("up").value);   
+console.log(fontGenerator.next().value);       
+console.log(fontGenerator.next("down").value); 
+console.log(fontGenerator.next("down").value); 
+console.log(fontGenerator.next("down").value); 
+console.log(fontGenerator.next().value);       
 
 let result = `
 Завдання 1:<br> 
